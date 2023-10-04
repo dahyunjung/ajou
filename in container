@@ -1,0 +1,4 @@
+docker start
+docker attach
+docker exec -it [container name]
+docker run
