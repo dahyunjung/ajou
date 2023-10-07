@@ -19,3 +19,5 @@ docker inspect nginx | grep IPAddress //IP 주소확인
 
 docker run -d --name=nginx_web03 -p 8888:80 nginx //기본적으로 브릿지에 연결되어 웹에서 확인할 수 있음(localhost:8888)
 docker run -d --name=nginx_web04 --net=host nginx //호스트로 연결해준 것.(localhost:80)
+
+//호스트와 브릿지의 차이에 대해서 알아볼 수 있다!//
