@@ -1,1 +1,29 @@
+docker run -d \
+--name mysql \ 
+-e MYSQL_DATABASE=sample \
+-e MYSQL_ROOT_PASSWORD=password \
+-v /home/ec2-user/mysql:/var/lib/mysql \ 
+mysql:5.7
+//호스트화 컨테이너의 볼륨을 공유//
 
+docker run -d -it -p 22:22 \
+--name volume_container \ 
+-v /home/ec2-user/volumes:/home/volume \
+ubuntu:20.04
+
+$ docker run -d -it -p 23:22 \
+--name other_container \ 
+--volumes-from volume_container \
+ubuntu:20.04
+//호스트 볼륨 공유를 사용해 볼륨 컨테이너를 생성하고 다른 컨테이너와 볼륨을 공유//
+
+docker run -d -it \
+--name other_container \ 
+-v /root \
+ubuntu:20.04
+
+$ docker volume ls
+DRIVER    VOLUME NAME
+local     7787c85e050fcede9d7f1ee78bbf81c8898d17714273cf667954b12949808ee5
+local     myvolume
+//v 옵션으로 자동으로 볼륨을 생성할 수 있음.
